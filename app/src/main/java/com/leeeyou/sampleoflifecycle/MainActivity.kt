@@ -5,22 +5,31 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.FormatStrategy
+import com.orhanobut.logger.Logger
+import com.orhanobut.logger.PrettyFormatStrategy
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
-    val TAG = MainActivity::class.java.simpleName
+    private val tag: String = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onCreate")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        initClick()
 
+        initLogger()
+        Logger.d(tag)
+    }
+
+    private fun initClick() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -45,22 +54,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initLogger() {
+        val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(false)
+            .methodCount(1)
+            .build()
+        Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
-        Log.e(TAG, "onCreateOptionsMenu")
+        Logger.d(tag)
         return true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        Log.e(TAG, "onPrepareOptionsMenu")
+        Logger.d(tag)
         return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
@@ -68,69 +81,68 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onPostCreate")
+        Logger.d(tag)
         super.onPostCreate(savedInstanceState)
     }
 
     override fun onRestart() {
-        Log.e(TAG, "onRestart")
+        Logger.d(tag)
         super.onRestart()
     }
 
     override fun onStart() {
-        Log.e(TAG, "onStart")
+        Logger.d(tag)
         super.onStart()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onRestoreInstanceState")
+        Logger.d(tag)
         super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onResume() {
-        Log.e(TAG, "onResume")
+        Logger.d(tag)
         super.onResume()
     }
 
     override fun onPostResume() {
-        Log.e(TAG, "onPostResume")
+        Logger.d(tag)
         super.onPostResume()
     }
 
     override fun onAttachedToWindow() {
-        Log.e(TAG, "onAttachedToWindow")
+        Logger.d(tag)
         super.onAttachedToWindow()
     }
 
     override fun onPause() {
-        Log.e(TAG, "onPause")
+        Logger.d(tag)
         super.onPause()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
-        Log.e(TAG, "onSaveInstanceState")
+        Logger.d(tag)
         super.onSaveInstanceState(outState)
     }
 
     override fun onStop() {
-        Log.e(TAG, "onStop")
+        Logger.d(tag)
         super.onStop()
     }
 
     override fun onDestroy() {
-        Log.e(TAG, "onDestroy")
+        Logger.d(tag)
         super.onDestroy()
     }
 
     override fun onAttachFragment(fragment: Fragment?) {
-        Log.e(TAG, "onAttachFragment")
+        Logger.d(tag)
         super.onAttachFragment(fragment)
     }
 
     override fun onContentChanged() {
-        Log.e(TAG, "onContentChanged")
+        Logger.d(tag)
         super.onContentChanged()
     }
-
 
 }

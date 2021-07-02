@@ -5,12 +5,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
+import com.orhanobut.logger.Logger
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -24,20 +21,18 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class MyFragment : Fragment() {
-    val TAG = MyFragment::class.java.simpleName
 
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onInflate(context: Context?, attrs: AttributeSet?, savedInstanceState: Bundle?) {
-        Log.e(TAG, "onInflate")
+        Logger.e(TAG)
         super.onInflate(context, attrs, savedInstanceState)
     }
 
     override fun onAttach(context: Context) {
-        Log.e(TAG, "onAttach")
+        Logger.e(TAG)
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
@@ -47,7 +42,7 @@ class MyFragment : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onCreate")
+        Logger.e(TAG)
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -59,79 +54,77 @@ class MyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e(TAG, "onCreateView")
-        // Inflate the layout for this fragment
+        Logger.e(TAG)
         return inflater.inflate(R.layout.fragment_club, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.e(TAG, "onViewCreated")
+        Logger.e(TAG)
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onActivityCreated")
+        Logger.e(TAG)
         super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onViewStateRestored")
+        Logger.e(TAG)
         super.onViewStateRestored(savedInstanceState)
     }
 
     override fun onStart() {
-        Log.e(TAG, "onStart")
+        Logger.e(TAG)
         super.onStart()
     }
 
     override fun onResume() {
-        Log.e(TAG, "onResume")
+        Logger.e(TAG)
         super.onResume()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        Log.e(TAG, "onCreateOptionsMenu")
+        Logger.e(TAG)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
-        Log.e(TAG, "onPrepareOptionsMenu")
+        Logger.e(TAG)
         super.onPrepareOptionsMenu(menu)
     }
 
     override fun onPause() {
-        Log.e(TAG, "onPause")
+        Logger.e(TAG)
         super.onPause()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Log.e(TAG, "onSaveInstanceState")
+        Logger.e(TAG)
         super.onSaveInstanceState(outState)
     }
 
     override fun onStop() {
-        Log.e(TAG, "onStop")
+        Logger.e(TAG)
         super.onStop()
     }
 
     override fun onDestroyView() {
-        Log.e(TAG, "onDestroyView")
+        Logger.e(TAG)
         super.onDestroyView()
     }
 
     override fun onDestroy() {
-        Log.e(TAG, "onDestroy")
+        Logger.e(TAG)
         super.onDestroy()
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
     }
 
 
     override fun onDetach() {
-        Log.e(TAG, "onDetach")
+        Logger.e(TAG)
         super.onDetach()
         listener = null
     }
@@ -153,7 +146,7 @@ class MyFragment : Fragment() {
     }
 
     companion object {
-        val TAG: String? = "MyFragmentTag"
+        const val TAG: String = "MyFragment"
 
         /**
          * Use this factory method to create a new instance of
@@ -163,7 +156,6 @@ class MyFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment MyFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             MyFragment().apply {
